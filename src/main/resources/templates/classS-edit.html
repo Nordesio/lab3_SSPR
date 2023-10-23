@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<div layout:fragment="content">
+    <div th:text="${errors}" class="margin-bottom alert-danger"></div>
+    <form action="#" th:action="@{/classS/{id}(id=${id})}" th:object="${classSDto}" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Название</label>
+            <input type="text" class="form-control" id="name" th:field="${classSDto.name}" required="true">
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary button-fixed">
+                <span th:if="${id == null}">Добавить</span>
+                <span th:if="${id != null}">Обновить</span>
+            </button>
+            <a class="btn btn-secondary button-fixed" th:href="@{/classS}">
+                Назад
+            </a>
+        </div>
+    </form>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">День</th>
+                <th scope="col">Пара</th>
+                <th scope="col">Кабинет</th>
+                <th scope="col">Id класса</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="shedule, iterator: ${shedules}">
+                <th scope="row" th:text="${iterator.index} + 1"/>
+                <td th:text="${shedule.id}"/>
+                <td th:text="${shedule.dayS}"/>
+                <td th:text="${shedule.number}"/>
+                <td th:text="${shedule.auditorium}"/>
+                <td th:text="${shedule.classS}"/>
+            </tr>>
+            </tbody>>
+        </table>
+    </div>
+</div>
+</body>>
+</html>

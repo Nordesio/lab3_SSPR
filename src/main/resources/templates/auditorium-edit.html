@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<div layout:fragment="content">
+    <div th:text="${errors}" class="margin-bottom alert-danger"></div>
+    <form action="#" th:action="@{/auditorium/{id}(id=${id})}" th:object="${auditoriumDto}" method="post">
+        <div class="mb-3">
+            <label for="cabinet" class="form-label">Кабинет</label>
+            <input type="text" class="form-control" id="cabinet" th:field="${auditoriumDto.cabinet}" required="true">
+        </div>
+        <div class="mb-3">
+            <label for="type" class="form-label">Тип</label>
+            <input type="text" class="form-control" id="type" th:field="${auditoriumDto.type}" required="true">
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary button-fixed">
+                <span th:if="${id == null}">Добавить</span>
+                <span th:if="${id != null}">Обновить</span>
+            </button>
+            <a class="btn btn-secondary button-fixed" th:href="@{/auditorium}">
+                Назад
+            </a>
+        </div>
+    </form>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">День</th>
+                <th scope="col">Пара</th>
+                <th scope="col">Кабинет</th>
+                <th scope="col">Id класса</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="shedule, iterator: ${shedules}">
+                <th scope="row" th:text="${iterator.index} + 1"/>
+                <td th:text="${shedule.id}"/>
+                <td th:text="${shedule.dayS}"/>
+                <td th:text="${shedule.number}"/>
+                <td th:text="${shedule.auditorium}"/>
+                <td th:text="${shedule.classS}"/>
+            </tr>>
+            </tbody>>
+        </table>
+    </div>
+</div>
+</body>
+</html>

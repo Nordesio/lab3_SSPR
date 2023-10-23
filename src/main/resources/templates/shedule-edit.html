@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<div layout:fragment="content">
+    <div th:text="${errors}" class="margin-bottom alert-danger"></div>
+    <form action="#" th:action="@{/shedule/{id}(id=${id})}" th:object="${sheduleDto}" method="post">
+        <div class="mb-3">
+            <label for="dayS" class="form-label">День</label>
+            <input type="text" class="form-control" id="dayS" th:field="${sheduleDto.dayS}" required="true">
+        </div>
+        <div class="mb-3">
+            <label for="number" class="form-label">Пара</label>
+            <input type="text" class="form-control" id="number" th:field="${sheduleDto.number}" required="true">
+        </div>
+        <div class="mb-3">
+            <label for="auditorium" class="form-label">Кабинет</label>
+            <input type="text" class="form-control" id="auditorium" th:field="${sheduleDto.auditorium}" required="true">
+        </div>
+        <div class="mb-3">
+            <label for="classS" class="form-label">Id класса</label>
+            <input type="text" class="form-control" id="classS" th:field="${sheduleDto.classS}" required="true">
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary button-fixed">
+                <span th:if="${id == null}">Добавить</span>
+                <span th:if="${id != null}">Обновить</span>
+            </button>
+            <a class="btn btn-secondary button-fixed" th:href="@{/shedule}">
+                Назад
+            </a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
